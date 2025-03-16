@@ -1,144 +1,119 @@
-'use client';
+'use client'
+import React, { useState } from 'react';
+import { MdSportsSoccer } from 'react-icons/md';
+import { MdKeyboardArrowDown, MdKeyboardArrowUp } from 'react-icons/md';
 
-import { useState } from 'react';
-import { ChevronDown, ChevronUp } from 'lucide-react';
-
-const sportsData = [
-  {
-    league: 'Spain / LaLiga',
-    matches: [
-      {
-        team1: 'Real Valladolid',
-        team2: 'Celta Vigo',
-        time: '03/15 6:00 p.m.',
-        odds: [4.90, 3.90, 1.72],
-        hcp: '(+0.5/+1) 1.96 | (-0.5/-1) 1.89',
-        early: ['o2.5 1.91', 'u2.5 1.91'],
-        points: '+208',
-      },
-      {
-        team1: 'Majorca',
-        team2: 'Espanyol Barcelona',
-        time: '03/15 8:15 p.m.',
-        odds: [1.84, 3.35, 4.90],
-        hcp: '(-0.5) 1.83 | (+0.5) 2.04',
-        early: ['o2 1.99', 'u2 1.91'],
-        points: '+225',
-      },
-      {
-        team1: 'CF Villarreal',
-        team2: 'Real Madrid',
-        time: '03/15 10:30 p.m.',
-        odds: [2.90, 3.75, 2.32],
-        hcp: '(0/+0.5) 1.84 | (0/-0.5) 2.02',
-        early: ['o3/3.5 2.07', 'u3/3.5 1.83'],
-        points: '+210',
-      },
-    ],
-  },
-  {
-    league: 'Italy / Serie A',
-    matches: [
-      {
-        team1: 'AC Monza',
-        team2: 'Parma Calcio',
-        time: '03/15 7:00 p.m.',
-        odds: [3.05, 3.25, 2.48],
-        hcp: '(0/+0.5) 1.79 | (-0.5) 2.08',
-        early: ['o2.5 2.04', 'u2.5 1.86'],
-        points: '+214',
-      },
-      {
-        team1: 'Udinese Calcio',
-        team2: 'Hellas Verona',
-        time: '03/15 7:00 p.m.',
-        odds: [1.71, 3.65, 5.30],
-        hcp: '(-0.5/-1) 1.97 | (+0.5/+1) 1.88',
-        early: ['o2/2.5 1.90', 'u2/2.5 2.00'],
-        points: '+221',
-      },
-      {
-        team1: 'AC Milan',
-        team2: 'Como 1907',
-        time: '03/15 10:00 p.m.',
-        odds: [1.78, 3.70, 4.70],
-        hcp: '(-0.5/-1) 1.98 | (+0.5/+1) 1.87',
-        early: ['o2.5/3 1.87', 'u2.5/3 2.03'],
-        points: '+225',
-      },
-      {
-        team1: 'Torino FC',
-        team2: 'Empoli FC',
-        time: '03/16 00:45',
-        odds: [1.87, 3.30, 4.80],
-        hcp: '(-0.5) 1.85 | (+0.5) 2.00',
-        early: ['o2/2.5 1.95', 'u2/2.5 1.95'],
-        points: '+222',
-      },
-    ],
-  },
-];
-
-export default function FeaturedEvents() {
-  const [openLeagues, setOpenLeagues] = useState<Record<string, boolean>>({});
-
-  const toggleLeague = (league: string) => {
-    setOpenLeagues((prev) => ({ ...prev, [league]: !prev[league] }));
-  };
+const FeaturedEvents = () => {
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="bg-white text-black p-6 rounded-lg shadow-lg max-w-7xl mx-auto my-10">
-      <h2 className="text-2xl font-bold mb-4">Featured Events</h2>
+    <div className='flex justify-center items-center bg-[#293339] w-full '>
+      <div className='bg-gray-950 w-[95%] p-8 rounded-3xl'>
+        <h1 className='text-3xl text-white font-bold'>Featured Events</h1>
 
-      {sportsData.map((leagueData) => (
-        <div key={leagueData.league} className="mb-4 border-b pb-3">
-          <div
-            className="flex justify-between items-center cursor-pointer py-2"
-            onClick={() => toggleLeague(leagueData.league)}
-          >
-            <span className="text-lg font-semibold">{leagueData.league}</span>
-            {openLeagues[leagueData.league] ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+        {/* Soccer Header */}
+        <div className="flex justify-between mt-4 items-center p-4 bg-[#293339] rounded-t-xl text-sm font-semibold h-[50px]">
+          <div className="flex items-center gap-2">
+            <MdSportsSoccer className="text-red-500 text-xl" />
+            <span className='text-white text-xl'>Soccer</span>
+          </div>
+          <button className="text-green-400 text-xs font-bold">Show all</button>
+        </div>
+
+        {/* League Row */}
+        <div className="flex flex-col mt-1 w-full">
+          {/* Upper Bar (95% + 5% dropdown) */}
+          <div className="flex w-full">
+            <div className="flex items-center justify-between bg-[#293339] text-sm font-semibold h-[40px] w-[95%] p-4">
+              <span className='text-green-400 text-sm'>Italy / Serie A</span>
+              <span className="text-gray-400 text-sm">4</span>
+            </div>
+
+            {/* Dropdown Button */}
+            <div 
+              className="flex justify-center items-center bg-[#293339] w-[5%] ml-[5px] cursor-pointer"
+              onClick={() => setIsOpen(!isOpen)}
+            >
+              {isOpen ? (
+                <MdKeyboardArrowUp className="text-green-400 text-xl" />
+              ) : (
+                <MdKeyboardArrowDown className="text-green-400 text-xl" />
+              )}
+            </div>
           </div>
 
-          {openLeagues[leagueData.league] && (
-            <div className="bg-gray-100 p-3 rounded-lg">
-              {leagueData.matches.map((match, index) => (
-                <div 
-                  key={index} 
-                  className="flex flex-col md:flex-row justify-between items-start md:items-center p-3 border-b last:border-0 text-sm space-y-3 md:space-y-0"
-                >
-                  {/* Team Names & Time */}
-                  <div className="flex flex-col w-full md:w-1/4">
-                    <p className="font-semibold">{match.team1}</p>
-                    <p className="text-gray-600">{match.team2}</p>
-                    <p className="text-gray-500 text-xs">{match.time}</p>
-                  </div>
-
-                  {/* Odds */}
-                  <div className="flex space-x-2 md:space-x-3 w-full md:w-1/4 justify-between md:justify-start">
-                    {match.odds.map((odd, i) => (
-                      <span key={i} className="px-3 py-1 bg-gray-200 rounded-lg">{odd}</span>
-                    ))}
-                  </div>
-
-                  {/* HCP */}
-                  <div className="w-full md:w-1/4 text-orange-600">{match.hcp}</div>
-
-                  {/* Early Odds */}
-                  <div className="flex space-x-2 md:space-x-3 w-full md:w-1/6 justify-between md:justify-start">
-                    {match.early.map((odd, i) => (
-                      <span key={i} className="px-3 py-1 bg-gray-200 rounded-lg">{odd}</span>
-                    ))}
-                  </div>
-
-                  {/* Points */}
-                  <div className="w-full md:w-1/12 text-green-600 font-semibold text-right md:text-left">{match.points}</div>
-                </div>
-              ))}
+          {/* Bottom Bar (Only visible when expanded) */}
+          {isOpen && (
+                 <div>
+            <div className="flex lg:space-x-24 space-x-11  justify-end items-center bg-[#293339] w-full h-[30px] p-4 mt-1 text-gray-400 text-[8px] font-semibold">
+              <span >1</span>
+              <span>X</span>
+              <span className='mr-24 lg:mr-[140px]'>2</span>
+              <span className='hidden lg:block  lg:mr-24 '>HCP</span>
+              <span className='hidden lg:block  lg:mx-20 mr-40'>EARLY</span>
             </div>
+
+              <div className="bg-gray-950 border-b-2 border-black text-white p-4 rounded-lg flex items-center justify-end space-x-6">
+              {/* Team Names */}
+              <div className="flex flex-col mr-12 lg:mr-48">
+                <span className="text-sm font-semibold">Venice</span>
+                <span className="text-sm ">SSC Naples</span>
+                <div className="text-gray-400 text-[9px] flex lg:hidden">
+                <span>03/16</span>
+                <br />
+                <span>4:30 p.m.</span>
+              </div>
+              </div>
+              
+              {/* Match Time */}
+              <div className="text-gray-400 text-sm hidden lg:flex">
+                <span>03/16</span>
+                <br />
+                <span>4:30 p.m.</span>
+              </div>
+              <div className='flex flex-col text-[9px] lg:text-sm text-green-400'>
+                <span>0</span>
+                <span>1</span>
+              </div>
+              
+              {/* Odds */}
+              <div className="flex space-x-2">
+                <div className="bg-[#293339] px-2 py-3 lg:px-6 lg:py-3 rounded-md text-[10px] lg:text-sm">7.60</div>
+                <div className="bg-[#293339]  px-2 py-3 lg:px-6 lg:py-3 rounded-md text-[10px] lg:text-sm">4.10</div>
+                <div className="bg-[#293339]  px-2 py-3 lg:px-6 lg:py-3 rounded-md text-[10px] lg:text-sm">1.49</div>
+              </div>
+              
+              {/* Handicap */}
+              <div className="hidden lg:flex space-x-2">
+                <div className="bg-[#293339] px-3 py-3 rounded-md text-sm">
+                  <span className="text-yellow-400">(+1.0)</span> 2.02
+                </div>
+                <div className="bg-[#293339] px-3 py-3 rounded-md text-sm">
+                  <span className="text-yellow-400">(-1.0)</span> 1.83
+                </div>
+              </div>
+              
+              {/* Over/Under */}
+              <div className="space-x-2 hidden lg:flex ">
+                <div className="bg-[#293339] px-3 py-3 rounded-md text-sm">
+                  <span className="text-yellow-400">o2/2.5</span> 1.89
+                </div>
+                <div className=" bg-[#293339] px-3 py-2 rounded-md text-sm ">
+                  <span className="text-yellow-400">u2/2.5</span> 2.01
+                </div>
+              </div>
+              
+              {/* Extra Button */}
+              <div className="text-green-400 bg-[#293339] px-3 py-2 rounded-md text-sm">+235</div>
+            </div>
+       </div>
+            
           )}
         </div>
-      ))}
+
+      </div>
     </div>
   );
 }
+
+export default FeaturedEvents;

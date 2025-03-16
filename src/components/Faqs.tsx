@@ -6,7 +6,7 @@ const CollapsibleText = () => {
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div className="flex flex-col items-center justify-center  py-10 px-4">
+    <div className="flex flex-col items-center justify-center bg-[#293339] text-white  py-10 px-4">
       {/* Heading */}
       <h2 className="text-lg md:text-xl font-medium text-center mb-4">
         Win the best winnings at Spinwinners.io: the home of Bitcoin betting
@@ -30,7 +30,7 @@ const CollapsibleText = () => {
         <section className="mt-10">
             <h2 className="text-2xl font-semibold text-blue-400">Top Sports to Bet On</h2>
             <div className="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <div className="bg-gray-50 p-4 rounded-xl">
+                <div className="bg-white text-black p-4  rounded-xl">
                     <h3 className="text-xl font-semibold text-blue-400">⚽ Football</h3>
                     <p>Bet on the **biggest leagues** including:</p>
                     <ul className="list-disc ml-5 mt-2">
@@ -40,7 +40,7 @@ const CollapsibleText = () => {
                         <li>**Serie A**</li>
                     </ul>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-xl">
+                <div className="bg-white text-black p-4 rounded-xl">
                     <h3 className="text-xl font-semibold text-blue-400">🏀 Basketball</h3>
                     <p>Place bets on top basketball leagues:</p>
                     <ul className="list-disc ml-5 mt-2">
@@ -49,7 +49,7 @@ const CollapsibleText = () => {
                         <li>**FIBA**</li>
                     </ul>
                 </div>
-                <div className="bg-gray-50 p-4 rounded-xl">
+                <div className="bg-white text-black p-4 rounded-xl">
                     <h3 className="text-xl font-semibold text-blue-400">🎮 Esports</h3>
                     <p>Get into the **hottest** esports tournaments:</p>
                     <ul className="list-disc ml-5 mt-2">
