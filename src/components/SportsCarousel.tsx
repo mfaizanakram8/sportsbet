@@ -94,8 +94,8 @@ const SportsNav = () => {
         {sports.map((sport, index) => (
           <Link key={index} href={sport.link} className="flex flex-col items-center justify-center w-[90px]">
             <div
-              className={`w-[60px] h-[60px] flex items-center justify-center rounded-lg transition duration-300 ${
-                pathname === sport.link ? "bg-gray-900 text-white border-t-2 border-blue-500" : "bg-gray-900 hover:bg-gray-800"
+              className={`w-[60px] h-[60px] flex items-center justify-center rounded-2xl transition duration-300 ${
+                pathname === sport.link ? "bg-gray-900 text-white border-t-[0.5px]  border-blue-500" : "bg-gray-900 hover:bg-gray-800"
               }`}
             >
               {sport.icon}
