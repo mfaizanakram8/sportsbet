@@ -57,25 +57,26 @@ const LiveCarousel = () => {
       requestAnimationFrame(checkScroll);
     }
   };
-
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.addEventListener("scroll", checkScroll);
-      window.addEventListener("resize", checkScroll);
-      
-      // Ensure check runs after component mounts
-      setTimeout(checkScroll, 100); 
-      
-      const observer = new MutationObserver(() => checkScroll());
-      observer.observe(scrollRef.current, { childList: true, subtree: true });
-
-      return () => {
-        scrollRef.current?.removeEventListener("scroll", checkScroll);
-        window.removeEventListener("resize", checkScroll);
-        observer.disconnect(); // Prevent memory leaks
-      };
-    }
+    if (!scrollRef.current) return;
+  
+    const scrollElement = scrollRef.current; // Store reference in a variable
+    scrollElement.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+  
+    // Ensure check runs after component mounts
+    setTimeout(checkScroll, 100); 
+  
+    const observer = new MutationObserver(() => checkScroll());
+    observer.observe(scrollElement, { childList: true, subtree: true });
+  
+    return () => {
+      scrollElement.removeEventListener("scroll", checkScroll);
+      window.removeEventListener("resize", checkScroll);
+      observer.disconnect(); // Prevent memory leaks
+    };
   }, []);
+  
 
   return (
     <div className="relative w-full p-2 my-4 bg-gray-950 border-y-2 border-black text-white">

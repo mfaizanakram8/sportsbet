@@ -59,21 +59,22 @@ const SportsNav = () => {
   };
 
   useEffect(() => {
-    if (scrollRef.current) {
-      scrollRef.current.addEventListener("scroll", checkScroll);
-      window.addEventListener("resize", checkScroll);
+    if (!scrollRef.current) return;
   
-      const observer = new MutationObserver(() => checkScroll());
-      observer.observe(scrollRef.current, { childList: true, subtree: true });
+    const scrollElement = scrollRef.current; // Store ref value
   
-      setTimeout(checkScroll, 100); // Ensure correct state update after component mounts
-    }
+    scrollElement.addEventListener("scroll", checkScroll);
+    window.addEventListener("resize", checkScroll);
+  
+    const observer = new MutationObserver(() => checkScroll());
+    observer.observe(scrollElement, { childList: true, subtree: true });
+  
+    setTimeout(checkScroll, 100); // Ensure state updates after mount
   
     return () => {
-      if (scrollRef.current) {
-        scrollRef.current.removeEventListener("scroll", checkScroll);
-      }
+      scrollElement.removeEventListener("scroll", checkScroll);
       window.removeEventListener("resize", checkScroll);
+      observer.disconnect(); // Prevent memory leaks
     };
   }, []);
   

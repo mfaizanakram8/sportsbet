@@ -1,6 +1,6 @@
 'use client';
 import { useState } from 'react';
-import { Menu, X, Search, Calendar, Gamepad2,  Star,  Globe,  CircleDollarSign, MonitorPlay, ListVideo, Joystick, Bolt, Bitcoin, Moon, Sun } from "lucide-react";
+import { Menu, X, Search, Calendar, Gamepad2,  Star,  Globe,  CircleDollarSign, MonitorPlay, ListVideo, Joystick, Bolt, Bitcoin } from "lucide-react";
 import Link from 'next/link';
 import Image from 'next/image';
 
