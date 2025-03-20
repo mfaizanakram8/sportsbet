@@ -9,7 +9,7 @@ import { FaGoogle, FaTelegramPlane } from "react-icons/fa";
 import "swiper/css";
 import "swiper/css/effect-fade";
 
-const images = ["/demo4.png", "/demo3.png", "/demo5.png"];
+const images = ["/sign3.jpg", "/sign4.jpg", "/sign5.jpg"];
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
@@ -22,9 +22,9 @@ export default function LoginPage() {
         <Swiper
           modules={[Autoplay, EffectFade]}
           autoplay={{ delay: 3000, disableOnInteraction: false }}
-          effect="fade"
+           effect="fade"
           loop={true}
-          className="w-full h-screen"
+          className="w-full h-full"
         >
           {images.map((src, index) => (
             <SwiperSlide key={index} className="flex justify-center">

@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/effect-fade"; // Import fade effect CSS
 import { FaGoogle, FaTelegramPlane } from "react-icons/fa";
 
-const images = ["/demo4.png", "/demo3.png", "/demo5.png"];
+const images = ["/sign1.jpg", "/sign2.jpg", "/sign3.jpg"];
 
 export default function LoginPage() {
   return (
